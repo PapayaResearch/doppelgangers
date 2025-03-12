@@ -1,0 +1,9 @@
+_target_: lightning.Trainer
+devices: ${system.devices}
+max_epochs: ${general.epochs}
+default_root_dir: logs/${general.run_name}
+sync_batchnorm: true
+fast_dev_run: true
+log_every_n_steps: 30
+check_val_every_n_epoch: 10
+benchmark: true

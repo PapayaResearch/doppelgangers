@@ -1,0 +1,7 @@
+model:
+  _target_: doppelgangers.resnet.AcousticResnet
+  num_classes: ${embedding.embedding_size}
+  conv_channels: 1
+embedding_size: 512
+name: AcousticResnet
+preprocessor: vggish

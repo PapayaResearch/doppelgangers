@@ -1,0 +1,9 @@
+mode: spec
+transform:
+  _target_: torchvision.transforms.Compose
+  transforms:
+    - _target_: torchaudio.transforms.FrequencyMasking
+      freq_mask_param: 40
+    - _target_: torchaudio.transforms.TimeMasking
+      time_mask_param: 40
+      p: 0.2

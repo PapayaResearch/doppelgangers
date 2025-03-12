@@ -1,0 +1,13 @@
+name: default
+config:
+    _target_: synthax.config.SynthConfig
+    # Batch size for synthesis
+    batch_size: ${data.batch_size}
+    # Sample rate
+    sample_rate: ${data.sample_rate}
+    # Buffer size in seconds
+    buffer_size_seconds: ${data.duration}
+    # Control rate
+    control_rate: 480
+    # A small epsilon value
+    eps: 1e-6

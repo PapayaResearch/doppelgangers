@@ -1,0 +1,18 @@
+_target_: lightning.Trainer
+devices: ${system.devices}
+max_epochs: ${general.epochs}
+default_root_dir: logs/${general.run_name}
+logger:
+    - _target_: lightning.pytorch.loggers.TensorBoardLogger
+      save_dir: logs/${general.run_name}
+    - _target_: lightning.pytorch.loggers.CSVLogger
+      save_dir: logs/${general.run_name}
+callbacks:
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      filename: ${general.run_name}-{epoch}_{step}
+      save_top_k: -1
+      every_n_epochs: 10
+sync_batchnorm: true
+log_every_n_steps: 30
+check_val_every_n_epoch: 10
+benchmark: true

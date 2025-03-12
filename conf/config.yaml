@@ -1,0 +1,70 @@
+##################
+# Defaults
+##################
+
+defaults:
+  - embedding: resnet
+  - synthconfig: default
+  - synth: voice
+  - transform: audiomentations
+  - trainer: main
+  - _self_
+
+#######################
+# Data Settings
+#######################
+
+data:
+  path: ${oc.env:VGGSOUND_PATH}
+  batch_size: 768
+  n_workers: 64
+  train_size: 0.9
+  apply_transform: true
+  max_n: 100000
+  duration: 1
+  sample_rate: 16000
+  ir_paths: ${oc.env:IR_PATH}
+  temporal_jitter: false
+  n_layers: 1
+  synthetic:
+    delta: 0.25
+  pregeneration:
+    n_pairs: 1000
+    delta: 0.25
+    n_layers: 5
+    batch_size: 10
+    data_dir: ${oc.env:DATA_DIR}
+    ckpt_path: ${hydra:runtime.cwd}/checkpoints/${model.ckpt}
+    device: cuda
+
+#######################
+# General Settings
+#######################
+
+general:
+  synthetic: true
+  log_dir: ${hydra:runtime.cwd}/logs
+  epochs: 200
+  unif_t: 2
+  align_alpha: 2
+  align_w: 1
+  unif_w: 1
+  use_tensorboard: true
+  ckpt: null
+  run_name: ${now:%a-%b-%d-%Y_%I-%M%p}
+  max_audio_log_n: 10
+  val_interval: 10
+  optimizer: sgd
+  scheduler:
+    milestones:
+      - 0.775
+      - 0.85
+      - 0.925
+
+#######################
+# System Settings
+#######################
+
+system:
+  seed: 0
+  devices: -1

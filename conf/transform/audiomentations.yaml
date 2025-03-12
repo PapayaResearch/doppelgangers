@@ -1,0 +1,37 @@
+mode: waveform
+transform:
+  _target_: torch_audiomentations.Compose
+  transforms:
+    - _target_: torch_audiomentations.HighPassFilter
+      min_cutoff_freq: 20.0
+      max_cutoff_freq: 800.0
+      mode: per_batch
+      p: 0.5
+      sample_rate: ${data.sample_rate}
+    - _target_: torch_audiomentations.LowPassFilter
+      min_cutoff_freq: 1200.0
+      max_cutoff_freq: 8000.0
+      mode: per_batch
+      p: 0.5
+      sample_rate: ${data.sample_rate}
+    - _target_: torch_audiomentations.PitchShift
+      min_transpose_semitones: -2.0
+      max_transpose_semitones: 2.0
+      mode: per_batch
+      p: 0.5
+      sample_rate: ${data.sample_rate}
+    - _target_: torch_audiomentations.Shift
+      min_shift: -0.25
+      max_shift: 0.25
+      shift_unit: fraction
+      rollover: true
+      mode: per_batch
+      p: 0.5
+      sample_rate: ${data.sample_rate}
+    - _target_: torch_audiomentations.ApplyImpulseResponse
+      ir_paths: ${data.ir_paths}
+      convolve_mode: full
+      compensate_for_propagation_delay: false
+      mode: per_batch
+      p: 0.5
+      sample_rate: ${data.sample_rate}

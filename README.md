@@ -10,6 +10,8 @@
 
 By randomly perturbing the parameters of a sound synthesizer ([SynthAX](https://github.com/PapayaResearch/synthax)), we generate synthetic positive pairs with causally manipulated variations in timbre, pitch, and temporal envelopes. These variations, difficult to achieve through augmentations of existing audio, provide a rich source of contrastive information. Despite the shift to randomly generated synthetic data, our method produces strong audio representations, outperforming real data on several standard audio classification tasks.
 
+https://github.com/user-attachments/assets/052cd225-a0bd-431f-bc65-ad24b78a4c7f
+
 > [!TIP]
 > You can hear examples on our [website](https://doppelgangers.media.mit.edu/).
 
